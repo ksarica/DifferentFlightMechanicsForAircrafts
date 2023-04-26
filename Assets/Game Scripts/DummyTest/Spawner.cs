@@ -1,14 +1,12 @@
 using UnityEngine;
-using Assets.Common.ObjectPooling;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private GameObject objectPrefab;
-    [SerializeField] private ObjectPool objectPool;
 
     private void Start()
     {
-        objectPool = new ObjectPool(objectPrefab);
+
     }
 
     private void Update()
@@ -37,8 +35,9 @@ public class Spawner : MonoBehaviour
         {
             for (int i = 1; i <= 8; i++)
             {
-                objectPool.CreateAtPosition((transform.position + new Vector3(UnityEngine.Random.Range(-10f, 10f),
-                UnityEngine.Random.Range(-50f, 50f), 10f)), transform.rotation);
+                Vector3 pos = transform.position + new Vector3(UnityEngine.Random.Range(-10f, 10f),
+                UnityEngine.Random.Range(-50f, 50f), 10f);
+                Instantiate(objectPrefab, pos, transform.rotation);
             }
         }
     }

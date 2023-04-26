@@ -1,5 +1,4 @@
-﻿using static UnityEditor.SceneView;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum CameraMode
 {
