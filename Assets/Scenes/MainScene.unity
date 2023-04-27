@@ -291,6 +291,26 @@ PrefabInstance:
       propertyPath: _poolController
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
+        type: 3}
+      propertyPath: verticalThrust
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
+        type: 3}
+      propertyPath: verticalSubThrust
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
+        type: 3}
+      propertyPath: verticalAfterburnerMultiplier
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
+        type: 3}
+      propertyPath: horizontalAfterburnerMultiplier
+      value: 3.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5790987425600265594, guid: 33fae26a937d310428d9b02dced28929,
         type: 3}
       propertyPath: m_Name

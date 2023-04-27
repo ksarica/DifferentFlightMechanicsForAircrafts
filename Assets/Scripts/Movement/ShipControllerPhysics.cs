@@ -11,23 +11,34 @@ public class ShipControllerPhysics : MonoBehaviour
     [SerializeField] private float maxAngularVelocity; // rigidbody's angularVelocity field => default is 7
     [SerializeField] private float defaultDrag;
 
-    [Header("SPEED ATTRIBUTES")]
-    [SerializeField] [Range(0f, 100f)] private float throttle;
-    [SerializeField] private float throttleMouseWheelUpdateRatio;
-    [SerializeField] private float cruiseSpeed;
-
-    [Header("CONTROL COEFFICIENTS")]
-    [SerializeField] private float horizontalThrust;
-    [SerializeField] private float verticalThrust;
-    [SerializeField] private float verticalSubThrust;
-    [SerializeField] private float torqueMouseSensitivity;
-    [SerializeField] private float yawSpeed;
-
     [Header("SHIP COMPONENTS")]
     // CAREFUL USING THIS ARRAY MAKE SURE THAT ARRAY INDEXES ARE IN THE RIGHT ORDER !
     [SerializeField] private Transform[] subThrusters; // for this spaceship we have 2 subThrusters placed at one front and one back
     [SerializeField] private Transform mainThruster;
     private new Rigidbody rigidbody;
+
+    [Header("CONTROL COEFFICIENTS")]
+    [SerializeField] private float horizontalThrust;
+    [SerializeField] private float verticalThrust;
+    [SerializeField] private float verticalSubThrust;
+
+    [SerializeField] private float torqueMouseSensitivity;
+    [SerializeField] private float yawSpeed;
+
+    [Header("SPEED ATTRIBUTES")]
+    [SerializeField] private float cruiseSpeed;
+    [SerializeField] private float throttleMouseWheelUpdateRatio;
+    [SerializeField][Range(0f, 100f)] private float throttle;
+
+    [Header("AFTERBURNER SETTINGS")]
+    [SerializeField] private float horizontalAfterburnerMultiplier;
+    [SerializeField] private float verticalAfterburnerMultiplier;
+
+    private float defaultHorizontalThrust;
+    private float defaultVerticalThrust;
+
+    private bool isHorizontalAfterburnerActive = false;
+    private bool isVerticalAfterburnerActive = false;
 
     private void Awake()
     {
@@ -38,6 +49,9 @@ public class ShipControllerPhysics : MonoBehaviour
     {
         rigidbody.maxAngularVelocity = maxAngularVelocity;
         defaultDrag = rigidbody.drag;
+
+        defaultHorizontalThrust = horizontalThrust;
+        defaultVerticalThrust = verticalThrust;
     }
 
     private void FixedUpdate()
@@ -56,7 +70,9 @@ public class ShipControllerPhysics : MonoBehaviour
         }
         GetThrottleInputs(KeyCode.W, KeyCode.S, KeyCode.F); // FORWARD FORCE
         GetMouseWheelInput();
+        GetAfterburnerInputs();
     }
+
 
     public void ResetDrag()
     {
@@ -113,6 +129,68 @@ public class ShipControllerPhysics : MonoBehaviour
         {
             throttle += Input.GetAxis("Mouse ScrollWheel") * throttleMouseWheelUpdateRatio * 10f; // will be incremented by 1 when Input called
             throttle = Mathf.Clamp(throttle, 0.0f, 100.0f);
+        }
+    }
+
+    private void GetAfterburnerInputs()
+    {
+        bool isShiftPressed = Input.GetKey(KeyCode.LeftShift);
+        bool isSpacePressed = Input.GetKey(KeyCode.Space);
+
+
+        if (isShiftPressed && isSpacePressed && throttle <= 0f)
+        {
+            ActivateVerticalAfterburner();
+        }
+        else if (isShiftPressed || (isShiftPressed && isSpacePressed))
+        {
+            ActivateHorizontalAfterburner();
+        }
+        else
+        {
+            DeactivateHorizontalAfterburner();
+            DeactivateVerticalAfterburner();
+        }
+    }
+
+
+    private void ActivateHorizontalAfterburner()
+    {
+        if (!isHorizontalAfterburnerActive)
+        {
+            horizontalThrust *= horizontalAfterburnerMultiplier;
+            isHorizontalAfterburnerActive = true;
+            // Visual Effect Management...
+        }
+    }
+
+    private void DeactivateHorizontalAfterburner()
+    {
+        if (isHorizontalAfterburnerActive)
+        {
+            horizontalThrust = defaultHorizontalThrust;
+            isHorizontalAfterburnerActive = false;
+            // Visual Effect Management...
+        }
+    }
+
+    private void ActivateVerticalAfterburner()
+    {
+        if (!isVerticalAfterburnerActive)
+        {
+            verticalThrust *= verticalAfterburnerMultiplier;
+            isVerticalAfterburnerActive = true;
+            // Visual Effect Management...
+        }
+    }
+
+    private void DeactivateVerticalAfterburner()
+    {
+        if (isVerticalAfterburnerActive)
+        {
+            verticalThrust = defaultVerticalThrust;
+            isVerticalAfterburnerActive = false;
+            // Visual Effect Management...
         }
     }
 
