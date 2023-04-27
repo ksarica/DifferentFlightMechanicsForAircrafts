@@ -287,6 +287,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2100238543, guid: 33fae26a937d310428d9b02dced28929, type: 3}
+      propertyPath: _poolController
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5790987425600265594, guid: 33fae26a937d310428d9b02dced28929,
         type: 3}
       propertyPath: m_Name
@@ -366,6 +370,18 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 667874543}
+    - target: {fileID: 1022617040, guid: 34f024d340963d640b2822235044a6fb, type: 3}
+      propertyPath: smoothRate
+      value: 0.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022617040, guid: 34f024d340963d640b2822235044a6fb, type: 3}
+      propertyPath: cameraUpFromTarget
+      value: 4.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022617040, guid: 34f024d340963d640b2822235044a6fb, type: 3}
+      propertyPath: cameraForwardFromTarget
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1181919559167925569, guid: 34f024d340963d640b2822235044a6fb,
         type: 3}
       propertyPath: target
@@ -439,53 +455,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 517408564}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1893982842
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1893982844}
-  - component: {fileID: 1893982843}
-  m_Layer: 0
-  m_Name: PoolController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1893982843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893982842}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1558858371b2994a883f55f619b27f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1632923012031998, guid: 1afb49e400b2834409f6a86959705a49, type: 3}
-  initialLength: 300
-  maxPoolCapacity: 500
---- !u!4 &1893982844
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1893982842}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2772865761811614270
 PrefabInstance:
   m_ObjectHideFlags: 0

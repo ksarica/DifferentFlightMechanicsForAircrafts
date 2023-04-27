@@ -21,7 +21,6 @@ public class AttackSystem : MonoBehaviour
 
     private void Update()
     {
-
         if (Input.GetMouseButton(0))
         {
             if (canBeFired)
@@ -33,6 +32,7 @@ public class AttackSystem : MonoBehaviour
         }
     }
 
+    // Object pooling not implemented, it is not a full project.
     public void Fire()
     {
         for (int i = 0; i < bulletPointCount; i++)
