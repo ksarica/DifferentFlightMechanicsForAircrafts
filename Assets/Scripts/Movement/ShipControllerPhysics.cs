@@ -9,7 +9,7 @@ public class ShipControllerPhysics : MonoBehaviour
 
     [Header("RIGIDBODY SETTINGS")]
     [SerializeField] private float maxAngularVelocity; // rigidbody's angularVelocity field => default is 7
-    [SerializeField] private float defaultDrag;
+    private float defaultDrag;
 
     [Header("SHIP COMPONENTS")]
     // CAREFUL USING THIS ARRAY MAKE SURE THAT ARRAY INDEXES ARE IN THE RIGHT ORDER !
@@ -212,7 +212,7 @@ public class ShipControllerPhysics : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                rigidbody.AddRelativeForce(Vector3.down * verticalThrust / 2.0f * FORCE_MULTIPLIER);
+                rigidbody.AddRelativeForce(Vector3.down * verticalThrust / 1.5f * FORCE_MULTIPLIER);
             }
         }
 
