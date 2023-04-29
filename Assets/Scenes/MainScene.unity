@@ -328,7 +328,7 @@ Terrain:
   m_HeightmapPixelError: 5
   m_SplatMapDistance: 1000
   m_HeightmapMaximumLOD: 0
-  m_ShadowCastingMode: 2
+  m_ShadowCastingMode: 0
   m_DrawHeightmap: 1
   m_DrawInstanced: 0
   m_DrawTreesAndFoliage: 1
@@ -365,39 +365,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2100238543, guid: 33fae26a937d310428d9b02dced28929, type: 3}
-      propertyPath: _fireDelay
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 2100238543, guid: 33fae26a937d310428d9b02dced28929, type: 3}
-      propertyPath: _poolController
+    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
+        type: 3}
+      propertyPath: verticalAfterburnerParticle
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8772969555078710316}
     - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
         type: 3}
-      propertyPath: defaultDrag
-      value: 2.5
-      objectReference: {fileID: 0}
+      propertyPath: leftHorizontalAfterburnerParticle
+      value: 
+      objectReference: {fileID: 1412695733}
     - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
         type: 3}
-      propertyPath: verticalThrust
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
-        type: 3}
-      propertyPath: verticalSubThrust
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
-        type: 3}
-      propertyPath: verticalAfterburnerMultiplier
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 355510296959145096, guid: 33fae26a937d310428d9b02dced28929,
-        type: 3}
-      propertyPath: horizontalAfterburnerMultiplier
-      value: 3.5
-      objectReference: {fileID: 0}
+      propertyPath: rightHorizontalAfterburnerParticle
+      value: 
+      objectReference: {fileID: 1413280038}
     - target: {fileID: 5790987425600265594, guid: 33fae26a937d310428d9b02dced28929,
         type: 3}
       propertyPath: m_Name
@@ -416,7 +398,7 @@ PrefabInstance:
     - target: {fileID: 5800967656343205950, guid: 33fae26a937d310428d9b02dced28929,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5800967656343205950, guid: 33fae26a937d310428d9b02dced28929,
         type: 3}
@@ -566,6 +548,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 34f024d340963d640b2822235044a6fb, type: 3}
+--- !u!198 &1412695733 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2434192281801842166, guid: 33fae26a937d310428d9b02dced28929,
+    type: 3}
+  m_PrefabInstance: {fileID: 517408564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &1413280038 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2288358291853407121, guid: 33fae26a937d310428d9b02dced28929,
+    type: 3}
+  m_PrefabInstance: {fileID: 517408564}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1572538759 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5790987425600265594, guid: 33fae26a937d310428d9b02dced28929,
@@ -592,12 +586,12 @@ PrefabInstance:
     - target: {fileID: 1807863180148115063, guid: 00ff591f7d2821b4cb3ff10ceca6f290,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1807863180148115063, guid: 00ff591f7d2821b4cb3ff10ceca6f290,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.35
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1807863180148115063, guid: 00ff591f7d2821b4cb3ff10ceca6f290,
         type: 3}
@@ -646,3 +640,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 00ff591f7d2821b4cb3ff10ceca6f290, type: 3}
+--- !u!198 &8772969555078710316 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8772969555503842072, guid: 33fae26a937d310428d9b02dced28929,
+    type: 3}
+  m_PrefabInstance: {fileID: 517408564}
+  m_PrefabAsset: {fileID: 0}
