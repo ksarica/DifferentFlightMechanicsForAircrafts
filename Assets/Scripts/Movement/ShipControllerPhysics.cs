@@ -39,6 +39,9 @@ public class ShipControllerPhysics : MonoBehaviour
 
     private bool isHorizontalAfterburnerActive = false;
     private bool isVerticalAfterburnerActive = false;
+    [SerializeField] private ParticleSystem leftHorizontalAfterburnerParticle;
+    [SerializeField] private ParticleSystem rightHorizontalAfterburnerParticle;
+    [SerializeField] private ParticleSystem verticalAfterburnerParticle;
 
     private void Awake()
     {
@@ -64,20 +67,31 @@ public class ShipControllerPhysics : MonoBehaviour
     private void Update()
     {
         cruiseSpeed = rigidbody.velocity.magnitude;
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            ResetDrag();
-        }
+        GetGlideInput();
         GetThrottleInputs(KeyCode.W, KeyCode.S, KeyCode.F); // FORWARD FORCE
         GetMouseWheelInput();
         GetAfterburnerInputs();
     }
 
-
-    public void ResetDrag()
+    private void GetGlideInput()
     {
-        rigidbody.drag = 0.0f;
-        throttle = 0.0f; // when drag is zero we disable the engine so that it will not get infinite force 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SwitchDrag(); // Toogle on-off for gliding
+        }
+    }
+
+    public void SwitchDrag()
+    {
+        if (rigidbody.drag == 0.0f)
+        {
+            rigidbody.drag = defaultDrag;
+        }
+        else
+        {
+            rigidbody.drag = 0.0f;
+            throttle = 0.0f; // when drag is zero we disable the engine so that it will not get infinite force 
+        }
     }
 
     public void GetMouseInput()
@@ -105,10 +119,7 @@ public class ShipControllerPhysics : MonoBehaviour
     {
         if (Input.GetKey(goToMaximum))
         {
-            if (rigidbody.drag == 0.0f)
-            {
-                rigidbody.drag = defaultDrag;
-            }
+
             throttle = Mathf.MoveTowards(throttle, 100.0f, Time.deltaTime * THROTTLE_INCREASE_RATE);
         }
 
@@ -134,22 +145,26 @@ public class ShipControllerPhysics : MonoBehaviour
 
     private void GetAfterburnerInputs()
     {
-        bool isShiftPressed = Input.GetKey(KeyCode.LeftShift);
-        bool isSpacePressed = Input.GetKey(KeyCode.Space);
+        if (rigidbody.drag > 0)
+        {
+            bool isShiftPressed = Input.GetKey(KeyCode.LeftShift);
+            bool isSpacePressed = Input.GetKey(KeyCode.Space);
 
-
-        if (isShiftPressed && isSpacePressed && throttle <= 0f)
-        {
-            ActivateVerticalAfterburner();
-        }
-        else if (isShiftPressed || (isShiftPressed && isSpacePressed))
-        {
-            ActivateHorizontalAfterburner();
-        }
-        else
-        {
-            DeactivateHorizontalAfterburner();
-            DeactivateVerticalAfterburner();
+            if (isShiftPressed && isSpacePressed && throttle <= 0f)
+            {
+                ActivateVerticalAfterburner();
+                DeactivateHorizontalAfterburner();
+            }
+            else if ((isShiftPressed || (isShiftPressed && isSpacePressed)) && throttle > 0f)
+            {
+                ActivateHorizontalAfterburner();
+                DeactivateVerticalAfterburner();
+            }
+            else
+            {
+                DeactivateHorizontalAfterburner();
+                DeactivateVerticalAfterburner();
+            }
         }
     }
 
@@ -158,9 +173,14 @@ public class ShipControllerPhysics : MonoBehaviour
     {
         if (!isHorizontalAfterburnerActive)
         {
-            horizontalThrust *= horizontalAfterburnerMultiplier;
-            isHorizontalAfterburnerActive = true;
-            // Visual Effect Management...
+            if (throttle > 0f)
+            {
+                horizontalThrust *= horizontalAfterburnerMultiplier;
+                isHorizontalAfterburnerActive = true;
+                // Visual Effect Management...
+                leftHorizontalAfterburnerParticle.Play();
+                rightHorizontalAfterburnerParticle.Play();
+            }
         }
     }
 
@@ -171,6 +191,8 @@ public class ShipControllerPhysics : MonoBehaviour
             horizontalThrust = defaultHorizontalThrust;
             isHorizontalAfterburnerActive = false;
             // Visual Effect Management...
+            leftHorizontalAfterburnerParticle.Stop();
+            rightHorizontalAfterburnerParticle.Stop();
         }
     }
 
@@ -181,6 +203,7 @@ public class ShipControllerPhysics : MonoBehaviour
             verticalThrust *= verticalAfterburnerMultiplier;
             isVerticalAfterburnerActive = true;
             // Visual Effect Management...
+            verticalAfterburnerParticle.Play();
         }
     }
 
@@ -191,6 +214,7 @@ public class ShipControllerPhysics : MonoBehaviour
             verticalThrust = defaultVerticalThrust;
             isVerticalAfterburnerActive = false;
             // Visual Effect Management...
+            verticalAfterburnerParticle.Stop();
         }
     }
 
@@ -212,7 +236,7 @@ public class ShipControllerPhysics : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                rigidbody.AddRelativeForce(Vector3.down * verticalThrust / 1.5f * FORCE_MULTIPLIER);
+                rigidbody.AddRelativeForce(Vector3.down * verticalThrust / 2.0f * FORCE_MULTIPLIER);
             }
         }
 
