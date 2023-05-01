@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb9c93cdcb66a3548919799d3352a429, type: 2}
+  - {fileID: 2100000, guid: d9ff8f533590de5449cbd4a5338da6c8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,7 +110,7 @@ Transform:
   m_GameObject: {fileID: 1632923012031998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55663, y: 0.3394425, z: 0.85964996}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4519124543256274}
@@ -128,20 +128,20 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.10876822, g: 0, b: 0.9339623, a: 0.5019608}
-  m_Intensity: 10
+  m_Color: {r: 0, g: 0.99215686, b: 0, a: 1}
+  m_Intensity: 20
   m_Range: 3
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 1
+  m_InnerSpotAngle: 1
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
+    m_Bias: 0.7
+    m_NormalBias: 1.6
+    m_NearPlane: 5.71
     m_CullingMatrixOverride:
       e00: 1
       e01: 0
@@ -193,5 +193,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentShip: {fileID: 5790987425600265594, guid: 33fae26a937d310428d9b02dced28929,
     type: 3}
-  bulletVelocity: 750
-  timeToLive: 3
+  bulletVelocity: 600
+  timeToLive: 2.5

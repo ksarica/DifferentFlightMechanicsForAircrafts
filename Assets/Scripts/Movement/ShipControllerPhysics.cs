@@ -43,6 +43,11 @@ public class ShipControllerPhysics : MonoBehaviour
     [SerializeField] private ParticleSystem rightHorizontalAfterburnerParticle;
     [SerializeField] private ParticleSystem verticalAfterburnerParticle;
 
+    [SerializeField] private ParticleSystem verticalFrontThrusterParticle;
+    [SerializeField] private ParticleSystem verticalMiddleThrusterParticle;
+    [SerializeField] private ParticleSystem verticalBackthrusterParticle;
+
+
     private void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -166,6 +171,11 @@ public class ShipControllerPhysics : MonoBehaviour
                 DeactivateVerticalAfterburner();
             }
         }
+        else
+        {
+            DeactivateHorizontalAfterburner();
+            DeactivateVerticalAfterburner();
+        }
     }
 
 
@@ -220,7 +230,7 @@ public class ShipControllerPhysics : MonoBehaviour
 
     public void GetThrusterInputs()
     {
-        if (rigidbody.drag > 0.0f) // WHEN DRAG IS ZERO DEACTIVATE THIS FORCES
+        if (rigidbody.drag > 0.0f) // SHOULD ONLY WORK WHEN GLIDING DEACTIVATED 
         {
             // HORIZONTAL
             if (throttle > 0.0f)
@@ -232,22 +242,53 @@ public class ShipControllerPhysics : MonoBehaviour
             if (Input.GetKey(KeyCode.Space)) // MAIN THRUSTER
             {
                 rigidbody.AddRelativeForce(Vector3.up * verticalThrust * FORCE_MULTIPLIER);
+                rigidbody.AddForceAtPosition(transform.up * verticalSubThrust * FORCE_MULTIPLIER, subThrusters[0].position);
+                rigidbody.AddForceAtPosition(transform.up * verticalSubThrust * FORCE_MULTIPLIER, subThrusters[1].position);
+                
+                if (!verticalAfterburnerParticle.isPlaying)
+                {
+                    verticalMiddleThrusterParticle.Play();
+                }
+                else
+                {
+                    verticalMiddleThrusterParticle.Stop();
+                }
+            }
+            else
+            {
+                verticalMiddleThrusterParticle.Stop();
             }
 
-            if (Input.GetKey(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftControl)) // DESCEND HELPER
             {
                 rigidbody.AddRelativeForce(Vector3.down * verticalThrust / 2.0f * FORCE_MULTIPLIER);
             }
-        }
 
-        if (Input.GetKey(KeyCode.E)) // FRONT THRUSTER
-        {
-            rigidbody.AddForceAtPosition(transform.up * verticalSubThrust * FORCE_MULTIPLIER, subThrusters[0].position);
-        }
+            if (Input.GetKey(KeyCode.E)) // BACK THRUSTER
+            {
+                rigidbody.AddForceAtPosition(transform.up * verticalSubThrust * FORCE_MULTIPLIER, subThrusters[0].position);
+                verticalBackthrusterParticle.Play();
+            }
+            else
+            {
+                verticalBackthrusterParticle.Stop();
+            }
 
-        if (Input.GetKey(KeyCode.Q)) // BACK THRUSTER
+            if (Input.GetKey(KeyCode.Q)) // FRONT THRUSTER
+            {
+                rigidbody.AddForceAtPosition(transform.up * verticalSubThrust * FORCE_MULTIPLIER, subThrusters[1].position);
+                verticalFrontThrusterParticle.Play();
+            }
+            else
+            {
+                verticalFrontThrusterParticle.Stop();
+            }
+        }
+        else
         {
-            rigidbody.AddForceAtPosition(transform.up * verticalSubThrust * FORCE_MULTIPLIER, subThrusters[1].position);
+            verticalFrontThrusterParticle.Stop();
+            verticalMiddleThrusterParticle.Stop();
+            verticalBackthrusterParticle.Stop();
         }
     }
 }
