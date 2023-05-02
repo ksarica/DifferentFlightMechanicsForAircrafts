@@ -193,5 +193,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parentShip: {fileID: 5790987425600265594, guid: 33fae26a937d310428d9b02dced28929,
     type: 3}
-  bulletVelocity: 600
+  bulletVelocity: 900
   timeToLive: 2.5
