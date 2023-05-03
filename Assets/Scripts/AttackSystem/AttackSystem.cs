@@ -3,8 +3,7 @@ using System.Collections;
 
 public class AttackSystem : MonoBehaviour
 {
-
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private ObjectPool bulletPool;
     [SerializeField] private Transform[] bulletPoints;
 
     [SerializeField] private float _fireDelay;
@@ -13,6 +12,7 @@ public class AttackSystem : MonoBehaviour
     private int nextFirePointIndex;
 
     private bool canBeFired = true;
+
     private void Start()
     {
         nextFirePointIndex = 0;
@@ -32,23 +32,21 @@ public class AttackSystem : MonoBehaviour
         }
     }
 
-    // Object pooling not implemented, it is not a full project.
     public void Fire()
     {
         for (int i = 0; i < bulletPointCount; i++)
         {
             nextFirePointIndex = nextFirePointIndex % bulletPointCount;
-            Instantiate(bulletPrefab, bulletPoints[nextFirePointIndex].position, this.transform.rotation);
+            GameObject bullet = bulletPool.GetObject();
+            bullet.transform.position = bulletPoints[nextFirePointIndex].position;
+            bullet.transform.rotation = transform.rotation;
             nextFirePointIndex++;
         }
-        StartCoroutine(WaitAndLetShooting(_fireDelay));
     }
 
     public IEnumerator WaitAndLetShooting(float seconds)
     {
         yield return new WaitForSeconds(seconds);
         canBeFired = true;
-        yield return null;
     }
-
 }
