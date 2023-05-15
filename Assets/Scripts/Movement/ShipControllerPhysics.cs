@@ -26,9 +26,11 @@ public class ShipControllerPhysics : MonoBehaviour
     [SerializeField] private float yawSpeed;
 
     [Header("SPEED ATTRIBUTES")]
-    [SerializeField] private float cruiseSpeed;
     [SerializeField] private float throttleMouseWheelUpdateRatio;
     [SerializeField][Range(0f, 100f)] private float throttle;
+    [SerializeField] private float cruiseSpeed;
+    public float GetThrottle() => throttle;
+    public float GetCruiseSpeed() => cruiseSpeed;
 
     [Header("AFTERBURNER SETTINGS")]
     [SerializeField] private float horizontalAfterburnerMultiplier;
@@ -73,9 +75,18 @@ public class ShipControllerPhysics : MonoBehaviour
     {
         cruiseSpeed = rigidbody.velocity.magnitude;
         GetGlideInput();
+        GetResetPositionInput();
         GetThrottleInputs(KeyCode.W, KeyCode.S, KeyCode.F); // FORWARD FORCE
         GetMouseWheelInput();
         GetAfterburnerInputs();
+    }
+
+    private void GetResetPositionInput()
+    {
+        if (Input.GetKey(KeyCode.R))
+        {
+            this.transform.position = new Vector3(0f, 30f, 0f);
+        }
     }
 
     private void GetGlideInput()
