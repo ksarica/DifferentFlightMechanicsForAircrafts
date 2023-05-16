@@ -1,7 +1,9 @@
 # DifferentFlightMechanicsForAircrafts
  Hobby project to implement different flight mechanics inspired from different games like Planetside 2, Battlestar Galactica.
  
- These mechanics give fighters more maneuver capability and dogfight potential.
+ These mechanics give fighters more maneuver capability and dogfight potential. 
+ 
+ This is not a full project. It is intended to show creative flight mechanics that can be used in different projects.
 
 ## Examples of the mechanics:
 
@@ -13,3 +15,12 @@
 
 ### Circling with Afterburner on Hover Mode  
 ![circleAfterburner](https://github.com/ksarica/DifferentFlightMechanicsForAircrafts/assets/46609011/97bc467e-6683-439f-b08e-b6cdd16cbb4d)
+
+### Gliding Mode to Slide on Air
+![glidingMode](https://github.com/ksarica/DifferentFlightMechanicsForAircrafts/assets/46609011/5cf792a7-d3d0-48f3-9010-d35900d61a63)
+
+### Flight Mechanics from Opposite Perspective
+![fightingSample](https://github.com/ksarica/DifferentFlightMechanicsForAircrafts/assets/46609011/982c9463-d433-4a1c-80bf-1d154c9704db)
+
+### FPS and Reverse Camera Modes
+![cameraModes](https://github.com/ksarica/DifferentFlightMechanicsForAircrafts/assets/46609011/7df043d9-c379-4d5a-9627-e03784f2e3b0)
