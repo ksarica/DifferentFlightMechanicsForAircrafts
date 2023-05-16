@@ -4,6 +4,10 @@
  These mechanics give fighters more maneuver capability and dogfight potential. 
  
  This is not a full project. It is intended to show creative flight mechanics that can be used in different projects.
+ 
+ ## Assets used in this project from Unity Asset Store:
+ * Prototyping Pack Free by DigitalKonstrukt
+ * Milky Way Skybox by Adam Bielecki
 
 ## Examples of the mechanics:
 
