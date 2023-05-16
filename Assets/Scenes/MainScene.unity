@@ -1961,6 +1961,14 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 667874543}
+    - target: {fileID: 1022617040, guid: 34f024d340963d640b2822235044a6fb, type: 3}
+      propertyPath: smoothRate
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1022617040, guid: 34f024d340963d640b2822235044a6fb, type: 3}
+      propertyPath: cameraForwardFromTarget
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1181919559167925569, guid: 34f024d340963d640b2822235044a6fb,
         type: 3}
       propertyPath: target
