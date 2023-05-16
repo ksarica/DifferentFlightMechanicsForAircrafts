@@ -16,6 +16,9 @@
 ### Circling with Afterburner on Hover Mode  
 ![circleAfterburner](https://github.com/ksarica/DifferentFlightMechanicsForAircrafts/assets/46609011/97bc467e-6683-439f-b08e-b6cdd16cbb4d)
 
+### Switching from Jet to Hover Mode
+![jetToHoverMode](https://github.com/ksarica/DifferentFlightMechanicsForAircrafts/assets/46609011/c8a0b085-2177-4a36-97da-bfc362672c70)
+
 ### Gliding Mode to Slide on Air
 ![glidingMode](https://github.com/ksarica/DifferentFlightMechanicsForAircrafts/assets/46609011/5cf792a7-d3d0-48f3-9010-d35900d61a63)
 
